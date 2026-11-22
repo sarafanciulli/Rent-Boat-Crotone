@@ -704,6 +704,27 @@ button { cursor: pointer; }
     cover 84% cover 94%;
   animation-timing-function: linear;
 }  
+[data-8b-live] #mo-argento {
+  animation: model-panel-out linear both;
+  animation-timeline: --models-t1;
+  animation-range: cover 82% cover 86%;
+}
+
+[data-8b-live] #mo-placeholder {
+  animation: model-panel-in linear both;
+  animation-timeline: --models-t1;
+  animation-range: cover 86% cover 90%;
+}
+
+@keyframes model-panel-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes model-panel-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 </style>
 <style data-8b-part="scene:battery">
 @layer scenes {

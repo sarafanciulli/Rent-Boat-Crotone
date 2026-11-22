@@ -321,6 +321,22 @@ button { cursor: pointer; }
   #models .mo__photo { order: -1; aspect-ratio: 1.3; }
   #models .mo__thumb { padding-right: 12px; }
   #models .mo__thumb img { width: 48px; height: 36px; }
+<style>
+#models .mo__stage { height: auto; }
+#models .mo__sticky { position: relative; display: block; height: auto; padding-top: clamp(32px, 4vw, 56px); }
+#models .mo__stack { position: relative; inset: auto; display: flex; flex-direction: row; flex-wrap: wrap; gap: 10px; margin: 0 0 28px; }
+#models .mo__list { position: relative; display: block; height: auto; }
+#models .mo__item { display: none; position: static; inset: auto; pointer-events: auto; }
+#models .mo__item.is-active { display: grid; }
+#models .mo__photo { height: auto; aspect-ratio: 1.5; transform: none; }
+#models .mo__thumb[aria-current="true"] { outline: 2px solid var(--color-6); outline-offset: 3px; }
+
+@media (max-width: 860px) {
+  #models .mo__sticky { height: auto; }
+  #models .mo__list { height: auto; }
+  #models .mo__photo { aspect-ratio: 1.3; }
+}
+</style>
 }
 }
 </style>

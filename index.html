@@ -1649,5 +1649,26 @@ document.querySelectorAll('#models .mo__item .mo__info .m-btn').forEach((button)
   });
 });
 </script>
+<script>
+document.querySelectorAll('#models .mo__info .m-btn').forEach((button) => {
+  button.addEventListener('click', () => {
+    const name = button.closest('.mo__item')
+      ?.querySelector('.mo__name')
+      ?.textContent.trim();
+
+    const select = document.querySelector('#contact select[name="model"]');
+    if (!name || !select) return;
+
+    const option = Array.from(select.options).find(
+      (item) => item.textContent.trim().toLowerCase() === name.toLowerCase()
+    );
+
+    if (option) {
+      select.value = option.value;
+      select.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+  });
+});
+</script>
 </body>
 </html>

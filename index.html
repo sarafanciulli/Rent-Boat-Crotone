@@ -307,7 +307,7 @@ button { cursor: pointer; }
 #models .mo__specs div { padding: 11px 0; border-bottom: 1px solid var(--color-9); }
 #models .mo__specs dt { color: var(--color-5); }
 #models .mo__specs dd { font-size: 18px; font-weight: 500; line-height: 1.3; }
-#models .mo__info .m-btn { margin-top: 8px; }position: relative; z-index: 10; pointer-events: auto; }
+#models .mo__info .m-btn { margin-top: 8px; position: relative; z-index: 10; pointer-events: auto; }
 #models .mo__item { pointer-events: none; }
 #models .mo__item .mo__info .m-btn { position: relative; z-index: 10; pointer-events: auto; }
 #models .mo__photo { position: relative; min-width: 0; min-height: 0; margin: 0; aspect-ratio: 1.5; border-radius: var(--radius-1); background: var(--color-2); }
@@ -1624,6 +1624,28 @@ motionKit.scene('footer', () => {
     if (placed || !mark.querySelector('.c')) return;
     placed = true;
     place();
+  });
+});
+</script>
+<script>
+document.querySelectorAll('#models .mo__item .mo__info .m-btn').forEach((button) => {
+  button.addEventListener('click', () => {
+    const modelName = button
+      .closest('.mo__item')
+      ?.querySelector('.mo__name')
+      ?.textContent.trim();
+
+    const modelSelect = document.querySelector('#contact select[name="model"]');
+    if (!modelName || !modelSelect) return;
+
+    const matchingOption = Array.from(modelSelect.options).find(
+      (option) => option.textContent.trim() === modelName
+    );
+
+    if (matchingOption) {
+      modelSelect.value = matchingOption.value;
+      modelSelect.dispatchEvent(new Event('change', { bubbles: true }));
+    }
   });
 });
 </script>

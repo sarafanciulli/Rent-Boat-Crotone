@@ -1698,7 +1698,7 @@ modelLinks.forEach((link) => {
   });
 });
 </script>
-</script>
+<script>
 (() => {
   const stage = document.querySelector('#models .mo__stage');
   const thumbnails = [...document.querySelectorAll('#models .mo__stack a.mo__thumb')];
@@ -1707,6 +1707,9 @@ modelLinks.forEach((link) => {
 
   thumbnails.forEach((thumbnail, index) => {
     thumbnail.addEventListener('click', (event) => {
+      // Let the normal anchor work when the pinned scroll animation is inactive.
+      if (!document.documentElement.hasAttribute('data-8b-live')) return;
+
       event.preventDefault();
 
       const stageTop = stage.getBoundingClientRect().top + window.scrollY;
@@ -1717,7 +1720,7 @@ modelLinks.forEach((link) => {
       history.replaceState(null, '', thumbnail.hash);
     });
   });
-})(); 
+})();
 </script>
 </body>
 </html>

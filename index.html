@@ -1489,96 +1489,63 @@ motionKit.scene('footer', () => {
 });
 </script>
 <script>
-document.querySelectorAll('#models .mo__item .mo__info .m-btn').forEach((button) => {
-  button.addEventListener('click', () => {
-    const modelName = button
-      .closest('.mo__item')
-      ?.querySelector('.mo__name')
-      ?.textContent.trim();
-
-    const modelSelect = document.querySelector('#contact select[name="model"]');
-    if (!modelName || !modelSelect) return;
-
-    const matchingOption = Array.from(modelSelect.options).find(
-      (option) => option.textContent.trim() === modelName
-    );
-
-    if (matchingOption) {
-      modelSelect.value = matchingOption.value;
-      modelSelect.dispatchEvent(new Event('change', { bubbles: true }));
-    }
-  });
-});
-</script>
-<script>
-document.querySelectorAll('#models .mo__info .m-btn').forEach((button) => {
-  button.addEventListener('click', () => {
-    const name = button.closest('.mo__item')
-      ?.querySelector('.mo__name')
-      ?.textContent.trim();
-
-    const select = document.querySelector('#contact select[name="model"]');
-    if (!name || !select) return;
-
-    const option = Array.from(select.options).find(
-      (item) => item.textContent.trim().toLowerCase() === name.toLowerCase()
-    );
-
-    if (option) {
-      select.value = option.value;
-      select.dispatchEvent(new Event('change', { bubbles: true }));
-    }
-  });
-});
-</script>
-<script>
-const modelLinks = document.querySelectorAll(
-  '#models .mo__thumb, #models .mo__info .m-btn'
-);
-
-modelLinks.forEach((link) => {
-  link.addEventListener('click', () => {
-    const modelItem = link.closest('.mo__item')
-      || document.querySelector(link.getAttribute('href'));
-
-    const modelName = modelItem
-      ?.querySelector('.mo__name')
-      ?.textContent.trim();
-
-    const select = document.querySelector('#contact select[name="model"]');
-    if (!modelName || !select) return;
-
-    const option = Array.from(select.options).find(
-      (item) => item.textContent.trim().toLowerCase() === modelName.toLowerCase()
-    );
-
-    if (option) {
-      select.value = option.value;
-      select.dispatchEvent(new Event('change', { bubbles: true }));
-    }
-  });
-});
-</script>
-<script>
 (() => {
-  const stage = document.querySelector('#models .mo__stage');
-  const thumbnails = [...document.querySelectorAll('#models .mo__stack a.mo__thumb')];
+  const section = document.querySelector('#models');
+  if (!section) return;
 
-  if (!stage || thumbnails.length < 2) return;
+  const items = [...section.querySelectorAll('.mo__item')];
+  const thumbs = [...section.querySelectorAll('.mo__thumb')];
+  const modelSelect = document.querySelector('#contact select[name="model"]');
 
-  thumbnails.forEach((thumbnail, index) => {
-    thumbnail.addEventListener('click', (event) => {
-      // Let the normal anchor work when the pinned scroll animation is inactive.
-      if (!document.documentElement.hasAttribute('data-8b-live')) return;
+  const selectModel = (item) => {
+    if (!item) return;
+
+    items.forEach((model) => {
+      const active = model === item;
+      model.classList.toggle('is-active', active);
+      model.setAttribute('aria-hidden', String(!active));
+    });
+
+    thumbs.forEach((thumb) => {
+      const active = thumb.hash === `#${item.id}`;
+      if (active) {
+        thumb.setAttribute('aria-current', 'true');
+      } else {
+        thumb.removeAttribute('aria-current');
+      }
+    });
+
+    if (modelSelect) {
+      const name = item.querySelector('.mo__name')?.textContent.trim();
+      const option = [...modelSelect.options].find(
+        (entry) => entry.textContent.trim().toLowerCase() === name?.toLowerCase()
+      );
+
+      if (option) {
+        modelSelect.value = option.value;
+        modelSelect.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    }
+  };
+
+  const hashTarget = document.getElementById(location.hash.slice(1));
+  selectModel(hashTarget?.closest('.mo__item') || items[0]);
+
+  thumbs.forEach((thumb) => {
+    thumb.addEventListener('click', (event) => {
+      const item = document.getElementById(thumb.hash.slice(1));
+      if (!item) return;
 
       event.preventDefault();
+      selectModel(item);
+      history.replaceState(null, '', thumb.hash);
+    });
+  });
 
-      const stageTop = stage.getBoundingClientRect().top + window.scrollY;
-      const scrollDistance = Math.max(0, stage.offsetHeight - window.innerHeight);
-      const targetY = stageTop + scrollDistance * index / (thumbnails.length - 1);
-
-      window.scrollTo({ top: targetY, behavior: 'smooth' });
-      history.replaceState(null, '', thumbnail.hash);
+  items.forEach((item) => {
+    item.addEventListener('click', (event) => {
+      if (event.target.closest('a, button, input, select, textarea')) return;
+      selectModel(item);
     });
   });
 })();

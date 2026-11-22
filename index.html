@@ -663,6 +663,47 @@ button { cursor: pointer; }
 @keyframes models-h3-m-text-5-visibility-3 { 0% { visibility: hidden; } 0.002% { visibility: visible; } 100% { visibility: visible; } }
 @keyframes models-h3-m-text-5-translate-3 { 0% { translate: 0px 36px; } 100% { translate: 0px 0px; } }
 }
+[data-8b-live] #models .mo__stage {
+  height: 400vh;
+  height: 400svh;
+}
+
+[data-8b-live] #models .mo__stack > li:nth-of-type(4) > .mo__thumb {
+  animation-name: models-a-mo-thumb-translate-3;
+}
+
+[data-8b-live] #mo-placeholder > .mo__photo {
+  animation-name:
+    models-figure-mo-photo-opacity-3,
+    models-figure-mo-photo-visibility-3,
+    models-figure-mo-photo-scale-3;
+  animation-timeline: --models-t1;
+  animation-fill-mode: both;
+  animation-range:
+    cover 84% cover 100%,
+    cover 84% cover 100%,
+    cover 84% cover 100%;
+  animation-timing-function:
+    linear,
+    linear,
+    var(--ease-power2-inout);
+}
+
+[data-8b-live] #mo-placeholder > .mo__info > .m-text-5,
+[data-8b-live] #mo-placeholder > .mo__info > .m-badge-2,
+[data-8b-live] #mo-placeholder > .mo__info > .m-text,
+[data-8b-live] #mo-placeholder > .mo__info > .mo__specs,
+[data-8b-live] #mo-placeholder > .mo__info > .m-btn {
+  animation-name:
+    models-h3-m-text-5-visibility-3,
+    models-h3-m-text-5-translate-3;
+  animation-timeline: --models-t1;
+  animation-fill-mode: both;
+  animation-range:
+    cover 84% cover 94%,
+    cover 84% cover 94%;
+  animation-timing-function: linear;
+}  
 </style>
 <style data-8b-part="scene:battery">
 @layer scenes {
@@ -819,17 +860,18 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
 <!-- models: three models on a pinned switcher: each photo grows from a stack of thumbnails at the right edge, with name, badge, text, four specs and a price tab (demo: Uno, Nero, Argento) (animation: scene:models) -->
 <section id="models" class="mo" data-8b-section="models" aria-labelledby="mo-title">
   <div class="l-wrap mo__head">
-    <h2 id="mo-title" class="m-text-2" data-8b-motion="rise" data-8b-split="lines">Three Arcos.<br>One charger.</h2>
+    <h2 id="mo-title" class="m-text-2" data-8b-motion="rise" data-8b-split="lines">Four Arcos.<br>One charger.</h2>
     <p class="m-text-4 mo__lead">Every model shares the battery, the hub motor and the app. Pick the one that suits your street.</p>
   </div>
   <div class="mo__stage">
     <div class="mo__sticky l-wrap">
-      <ol class="mo__stack" aria-label="Jump to a model" data-8b-items=":scope > li" data-8b-fixed="3">
+      <ol class="mo__stack" aria-label="Jump to a model" data-8b-items=":scope > li" data-8b-fixed="4">
         <li><a class="mo__thumb m-surface" href="#mo-uno"><img src="https://images.unsplash.com/photo-1697646382333-0d14cf52b20e?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8c2Nvb3RlciUyMGlzb2xhdGVkJTIwd2hpdGUlMjBiYWNrZ3JvdW5kfGVufDF8MHx8fDE3OTEyMzIzMzd8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=1100&q=60" width="1600" height="1200" alt=""><span><strong>Uno</strong><span class="m-text-3">City model</span></span></a></li>
         <li><a class="mo__thumb m-surface" href="#mo-nero"><img src="https://images.unsplash.com/photo-1598475208509-e8bc55613d93?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Nnx8ZWxlY3RyaWMlMjBzY29vdGVyJTIwbW9wZWQlMjBwYXJrZWR8ZW58MXwwfHx8MTc5MTIzMjMzOXww&ixlib=rb-4.1.0&auto=format&fit=crop&w=220&q=60" width="1600" height="1067" alt="" loading="lazy"><span><strong>Nero</strong><span class="m-text-3">Night edition</span></span></a></li>
         <li><a class="mo__thumb m-surface" href="#mo-argento"><img src="https://images.unsplash.com/photo-1550789458-5c1504fbbf55?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NXx8c2Nvb3RlciUyMGlzb2xhdGVkJTIwd2hpdGUlMjBiYWNrZ3JvdW5kfGVufDF8MHx8fDE3OTEyMzIzMzd8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=220&q=60" width="1600" height="1067" alt="" loading="lazy"><span><strong>Argento</strong><span class="m-text-3">Classic line</span></span></a></li>
+        <li><a class="mo__thumb m-surface" href="#mo-placeholder"><img src="YOUR_MODEL_IMAGE_URL" width="1600" height="1067" alt="" loading="lazy"><span><strong>Modello 4</strong><span class="m-text-3">Nuovo modello</span></span></a></li>
       </ol>
-      <div class="mo__list" data-8b-items=":scope > .mo__item" data-8b-fixed="3">
+      <div class="mo__list" data-8b-items=":scope > .mo__item" data-8b-fixed="4">
         <article id="mo-uno" class="mo__item">
           <div class="mo__info">
             <h3 class="m-text-5 mo__name">Uno</h3>
@@ -882,6 +924,24 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
           <figure class="mo__photo">
             <img src="https://images.unsplash.com/photo-1550789458-5c1504fbbf55?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NXx8c2Nvb3RlciUyMGlzb2xhdGVkJTIwd2hpdGUlMjBiYWNrZ3JvdW5kfGVufDF8MHx8fDE3OTEyMzIzMzd8MA&ixlib=rb-4.1.0&auto=format&fit=crop&w=220&q=60" width="1600" height="1067" alt="The silver Arco Argento on its stand in front of a white door" loading="lazy">
             <figcaption class="mo__price m-tab-2"><span class="m-text-5">£2,690</span><span class="m-text-3">or £74 a month</span></figcaption>
+          </figure>
+        </article>
+        <article id="mo-placeholder" class="mo__item">
+          <div class="mo__info">
+            <h3 class="m-text-5 mo__name">Modello 4</h3>
+            <p class="m-badge-2">Nuovo modello</p>
+            <p class="m-text mo__desc">A placeholder description for the fourth model. Replace this text with the final product description.</p>
+            <dl class="mo__specs">
+              <div><dt class="m-text-3">Top speed</dt><dd>45 km/h</dd></div>
+              <div><dt class="m-text-3">Range</dt><dd>100 km</dd></div>
+              <div><dt class="m-text-3">Weight</dt><dd>84 kg</dd></div>
+              <div><dt class="m-text-3">Seats</dt><dd>Two</dd></div>
+            </dl>
+            <a class="m-btn" href="#contact"><span class="m-btn__label">Ride Modello 4</span><span class="m-btn__icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4 10h11M11 5l5 5-5 5"/></svg></span></a>
+          </div>
+          <figure class="mo__photo">
+            <img src="YOUR_MODEL_IMAGE_URL" width="1600" height="1067" alt="Placeholder image for the fourth Arco model" loading="lazy">
+            <figcaption class="mo__price m-tab-2"><span class="m-text-5">£3,190</span><span class="m-text-3">or £89 a month</span></figcaption>
           </figure>
         </article>
       </div>

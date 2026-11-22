@@ -669,7 +669,21 @@ button { cursor: pointer; }
 }
 
 [data-8b-live] #models .mo__stack > li:nth-of-type(4) > .mo__thumb {
-  animation-name: models-a-mo-thumb-translate-3;
+  animation-name: models-a-mo-thumb-translate-4;
+}
+
+[data-8b-live] #mo-argento {
+  animation-name: model-argento-out;
+  animation-timeline: --models-t1;
+  animation-range: cover 82% cover 86%;
+  animation-fill-mode: both;
+}
+
+[data-8b-live] #mo-placeholder {
+  animation-name: model-placeholder-in;
+  animation-timeline: --models-t1;
+  animation-range: cover 86% cover 90%;
+  animation-fill-mode: both;
 }
 
 [data-8b-live] #mo-placeholder > .mo__photo {
@@ -700,30 +714,24 @@ button { cursor: pointer; }
   animation-timeline: --models-t1;
   animation-fill-mode: both;
   animation-range:
-    cover 84% cover 94%,
-    cover 84% cover 94%;
+    cover 86% cover 94%,
+    cover 86% cover 94%;
   animation-timing-function: linear;
-}  
-[data-8b-live] #mo-argento {
-  animation: model-panel-out linear both;
-  animation-timeline: --models-t1;
-  animation-range: cover 82% cover 86%;
 }
 
-[data-8b-live] #mo-placeholder {
-  animation: model-panel-in linear both;
-  animation-timeline: --models-t1;
-  animation-range: cover 86% cover 90%;
-}
-
-@keyframes model-panel-out {
+@keyframes model-argento-out {
   from { opacity: 1; }
   to { opacity: 0; }
 }
 
-@keyframes model-panel-in {
+@keyframes model-placeholder-in {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@keyframes models-a-mo-thumb-translate-4 {
+  from { translate: 0 0; }
+  to { translate: -26px 0; }
 }
 </style>
 <style data-8b-part="scene:battery">
